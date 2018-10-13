@@ -130,8 +130,7 @@ class World(object):
             if super_type not in self.types:
                 raise ValueError('Unknown type {}.'.format(super_type))
             if super_type not in self.super_types[sub_type]:
-                err = '{} is not a super type of {}.'.format(
-                    super_type, sub_type)
+                err = '{} is not a super type of {}.'.format(super_type, sub_type)
                 raise ValueError(err)
             self.super_types[sub_type].remove(super_type)
             self.sub_types[super_type].remove(sub_type)
@@ -146,8 +145,7 @@ class World(object):
             if typ not in self.types:
                 raise ValueError('Unknown type {}.'.format(typ))
             if typ not in self.obj_2_types[obj]:
-                err = 'Object {} is does not belong to type {}.'.format(
-                    obj, typ)
+                err = 'Object {} is does not belong to type {}.'.format(obj, typ)
                 raise ValueError(err)
             self.obj_2_types[obj].remove(typ)
             self.type_2_objs[typ].remove(obj)
