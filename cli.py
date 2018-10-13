@@ -18,6 +18,7 @@ print("""                     _     _ _
 
 world = World()
 
+
 def repl():
     global world
     while(True):
@@ -68,7 +69,7 @@ def repl():
             dot.render(tmp, view=True)
         elif arg0 == 'code':
             print(world.get_code() + '\n')
-        else:    
+        else:
             try:
                 world.run(*args)
             except Exception as e:
