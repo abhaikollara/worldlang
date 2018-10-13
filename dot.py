@@ -8,6 +8,7 @@ def object_graph(world):
             dot.edge(obj1, obj2, label=' ' * 3 + rel)
     return dot
 
+
 def type_graph(world):
     import graphviz
     dot = graphviz.Digraph(comment="World Type Graph")

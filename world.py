@@ -56,7 +56,6 @@ class World(object):
         if obj[0] == '$':
             self.type_object(obj, obj[1:])
 
-
     def delete_object(self, obj):
         if obj not in self.objs:
             err = 'Unable to delete object {}.'.format(obj)
@@ -79,11 +78,11 @@ class World(object):
         if typ in self.types:
             err = 'Unable to create type {}.'.format(typ)
             err += ' Antother type with the same name already exists.'
-            raise ValueError(err)        
+            raise ValueError(err)
         elif typ in self.objs:
             err = 'Unable to create type {}.'.format(typ)
             err += ' An object with the same name already exists.'
-            raise ValueError(err) 
+            raise ValueError(err)
         elif typ in self.rels:
             err = 'Unable to create type {}.'.format(typ)
             err += ' A relation with the same name already exists.'
@@ -131,7 +130,8 @@ class World(object):
             if super_type not in self.types:
                 raise ValueError('Unknown type {}.'.format(super_type))
             if super_type not in self.super_types[sub_type]:
-                err = '{} is not a super type of {}.'.format(super_type, sub_type)
+                err = '{} is not a super type of {}.'.format(
+                    super_type, sub_type)
                 raise ValueError(err)
             self.super_types[sub_type].remove(super_type)
             self.sub_types[super_type].remove(sub_type)
@@ -146,7 +146,8 @@ class World(object):
             if typ not in self.types:
                 raise ValueError('Unknown type {}.'.format(typ))
             if typ not in self.obj_2_types[obj]:
-                err = 'Object {} is does not belong to type {}.'.format(obj, typ)
+                err = 'Object {} is does not belong to type {}.'.format(
+                    obj, typ)
                 raise ValueError(err)
             self.obj_2_types[obj].remove(typ)
             self.type_2_objs[typ].remove(obj)
@@ -275,7 +276,6 @@ class World(object):
                 code.append(' '.join([sup, sub]))
         return '\n'.join(code)
 
-
     def serialize(self):
         config = {}
         config['objects'] = list(self.objs)
@@ -288,7 +288,7 @@ class World(object):
             object_graph.append((rel, obj1, list(objs)))
         config['object_graph'] = object_graph
         type_graph = {k: list(v) for (k, v) in self.sub_types.items()}
-        config['type_graph'] =  type_graph
+        config['type_graph'] = type_graph
         return config
 
     @classmethod
@@ -322,7 +322,7 @@ class World(object):
             assert len(args) == 2
             self.add_relation(args[1])
         elif arg0 == 'del':
-            assert len(args) ==  2
+            assert len(args) == 2
             arg1 = args[1]
             if arg1 in self.objs:
                 self.delete_object(arg1)
@@ -365,7 +365,7 @@ class World(object):
             if arg1 in self.types:
                 self.type_type(arg1, arg0, True)
             elif arg1 in self.objs:
-                self.type_object(arg1, arg0,True)
+                self.type_object(arg1, arg0, True)
         elif arg0 in self.rels:
             assert len(args) == 3
             self.relate_objects(arg0, args[1], args[2])
@@ -404,6 +404,7 @@ class World(object):
                 if args and args[0] and args[0][0] != '#':
                     world.run(*args)
         return world
+
 
 def reset(self):
     self.__init__()
