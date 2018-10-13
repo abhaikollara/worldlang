@@ -41,7 +41,7 @@ class World(object):
     def add_object(self, obj):
         if obj in self.objs:
             err = 'Unable to create object {}.'.format(obj)
-            err += ' Antother object with the same name already exists.'
+            err += ' An object with the same name already exists.'
             raise ValueError(err)
         elif obj in self.types:
             err = 'Unable to create object {}.'.format(obj)
