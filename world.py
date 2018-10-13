@@ -403,6 +403,5 @@ class World(object):
                     world.run(*args)
         return world
 
-
-def reset(self):
-    self.__init__()
+    def reset(self):
+        self.__init__()
